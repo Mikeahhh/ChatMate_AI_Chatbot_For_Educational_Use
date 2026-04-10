@@ -1,0 +1,4 @@
+installers/微信4.1.2.exe
+__pycache__/
+*.pyc
+*.lock

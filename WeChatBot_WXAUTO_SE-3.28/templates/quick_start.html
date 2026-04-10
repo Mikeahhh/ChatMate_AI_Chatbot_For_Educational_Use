@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-----------------------------------------------------------------------
+- Copyright (C) 2025, iwyxdxl
+- Licensed under GNU GPL-3.0 or higher, see the LICENSE file for details.
+-
+- This file is part of WeChatBot.
+- WeChatBot is free software: you can redistribute it and/or modify
+- it under the terms of the GNU General Public License as published by
+- the Free Software Foundation, either version 3 of the License, or
+- (at your option) any later version.
+-
+- WeChatBot is distributed in the hope that it will be useful,
+- but WITHOUT ANY WARRANTY; without even the implied warranty of
+- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- GNU General Public License for more details.
+-
+- You should have received a copy of laughable General Public License
+- along with WeChatBot.  If not, see <http://www.gnu.org/licenses/>.
+------------------------------------------------------------------------>
+    <title>Quick Start - WeChatBot</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f7f8fc;
+            font-family: Arial, sans-serif;
+            padding: 15px;
+            box-sizing: border-box;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            max-width: 600px;
+            margin: 20px auto;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        h1 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-size: 22px;
+            color: #333;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+        }
+        h2 {
+            font-size: 18px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            color: #444;
+            border-bottom: 1px solid #f0f0f0;
+            padding-bottom: 8px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #555;
+            font-size: 14px;
+        }
+        input[type="text"], input[type="password"], select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+        input:focus, select:focus {
+            border-color: #4caf50;
+            box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+            outline: none;
+        }
+        small {
+            font-size: 0.85em;
+            color: #666;
+            display: block;
+            line-height: 1.4;
+            margin-top: 3px;
+        }
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+        button, a.button-like {
+            flex-grow: 1;
+            padding: 12px 18px;
+            font-size: 15px;
+            text-decoration: none;
+            border: none;
+            border-radius: 4px;
+            background-color: #4caf50;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-align: center;
+            min-width: 150px;
+        }
+        button:hover, a.button-like:hover {
+            background-color: #45a049;
+        }
+        a.button-like.secondary {
+            background-color: #4caf50;
+        }
+        a.button-like.secondary:hover {
+            background-color: #45a049;
+        }
+        a.button-like.skip {
+            background-color: #6c757d;
+        }
+        a.button-like.skip:hover {
+            background-color: #5a6268;
+        }
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 28px;
+            vertical-align: middle;
+        }
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: 0.4s;
+            border-radius: 28px;
+        }
+        .slider::before {
+            position: absolute;
+            content: "";
+            height: 20px;
+            width: 20px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: 0.4s;
+            border-radius: 50%;
+        }
+        input:checked + .slider {
+            background-color: #4caf50;
+        }
+        input:checked + .slider::before {
+            transform: translateX(22px);
+        }
+        .switch-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        .switch-item > label {
+            font-weight: bold;
+            color: #555;
+            font-size: 14px;
+            margin-bottom: 0;
+        }
+        .switch label {
+            display: block;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+        .switch-item label b {
+            font-weight: normal;
+            color: #333;
+        }
+        .entry {
+            display: grid;
+            grid-template-columns: 2fr 3fr auto;
+            gap: 10px;
+            margin-bottom: 10px;
+            align-items: center;
+        }
+        .entry input,
+        .entry select {
+            box-sizing: border-box;
+            min-width: 100px;
+            width: 100%;
+            height: 38px;
+            font-size: 14px;
+            margin-bottom: 0;
+        }
+        .entry button {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            height: 38px;
+            padding: 0 12px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            min-width: 70px;
+        }
+        .entry button:hover {
+            background-color: #d32f2f;
+        }
+        
+        .api-key-hint {
+            color: #ff9800 !important;
+            font-weight: bold;
+            margin-top: 5px !important;
+        }
+        button.add-user-btn {
+             margin-top:10px;
+             background-color: #5cb85c;
+             padding: 8px 12px;
+             font-size: 14px;
+        }
+        button.add-user-btn:hover {
+            background-color: #4cae4c;
+        }
+        .legal-notice {
+            margin-top: 30px;
+            padding: 15px 20px;
+            background-color: #f7f8fc;
+            border-top: 1px solid #e0e0e0;
+            text-align: center;
+            font-size: 0.85em;
+            color: #6c757d;
+            line-height: 1.5;
+            width: 100%;
+            max-width: 600px;
+            box-sizing: border-box;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 20px;
+        }
+        .legal-notice .legal-toggle {
+            cursor: pointer;
+            color: #4caf50;
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+        .legal-notice .legal-content {
+            display: none;
+            text-align: left;
+            font-size: 0.95em;
+        }
+        .legal-notice .legal-content a {
+            color: #4caf50;
+            text-decoration: none;
+        }
+        .legal-notice .legal-content a:hover {
+            text-decoration: underline;
+        }
+        @media (max-width: 768px) {
+            body {
+                padding: 15px 0;
+            }
+            .container {
+                margin: 10px auto;
+                padding: 15px;
+                border-radius: 0;
+                box-shadow: none;
+            }
+            h1 {
+                font-size: 20px;
+            }
+            h2 {
+                font-size: 17px;
+            }
+            button, a.button-like {
+                font-size: 14px;
+                padding: 10px 15px;
+            }
+            .entry {
+                grid-template-columns: 1fr;
+            }
+            .entry button {
+                width: 100%;
+                margin-top: 5px;
+            }
+            .button-group {
+                flex-direction: column;
+            }
+            .legal-notice {
+                font-size: 0.8em;
+                padding: 10px 15px;
+                margin-top: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>WeChatBot Quick Start Setup</h1>
+        <form method="post" action="{{ url_for('quick_start') }}">
+            <h2>1. API Configuration</h2>
+            <div class="form-group">
+                <label for="quick_start_api_provider">API Provider:</label>
+                <select id="quick_start_api_provider" name="quick_start_api_provider">
+                    <option value="weapis" {% if current_api_provider == 'weapis' %}selected{% endif %}>WeAPIs (Recommended, supports chat/image recognition/web search)</option>
+                    <option value="siliconflow" {% if current_api_provider == 'siliconflow' %}selected{% endif %}>SiliconFlow (Chat only)</option>
+                    <option value="deepseek_official" {% if current_api_provider == 'deepseek_official' %}selected{% endif %}>DeepSeek Official (Chat only)</option>
+                    <option value="other" {% if current_api_provider == 'other' %}selected{% endif %}>Other (Chat only, custom URL)</option>
+                </select>
+                <a href="https://linkvg.v1chat.cc/register?aff=Rf3h" target="_blank" class="button-like secondary" id="weapis_register_link" style="margin-top: 10px; display: block; width: fit-content;">Apply for WeAPIs Key</a>
+            </div>
+
+            <div class="form-group" id="custom_base_url_group" style="display: none;">
+                <label for="quick_start_custom_base_url">Custom Base URL:</label>
+                <input type="text" id="quick_start_custom_base_url" name="quick_start_custom_base_url" placeholder="e.g.: https://api.example.com/v1" value="{{ current_custom_base_url if current_api_provider == 'other' else '' }}">
+            </div>
+
+            <div class="form-group">
+                <label for="quick_start_api_key">API Key:</label>
+                <input type="text" id="quick_start_api_key" name="quick_start_api_key" value="{{ config.DEEPSEEK_API_KEY or '' }}" placeholder="Enter API Key" class="api-key-input">
+                <small class="api-key-hint">{{ "For security reasons, the full API Key is hidden. To change it, enter a new API Key directly." if "*" in (config.DEEPSEEK_API_KEY or '') else "" }}</small>
+                <small id="api_key_note">After obtaining a WeAPIs key, chat, image recognition, and web search features will use this key with recommended settings.</small>
+            </div>
+
+            <div class="form-group" id="non_weapis_note" style="display: none;">
+                <small style="color: #dd6600; font-weight: bold;">Note: Your selected AI provider may not support image recognition and web search models. To use these features, please configure them separately in the detailed settings page.</small>
+            </div>
+
+            <h2>2. User List</h2>
+            <div class="form-group">
+                <label>Configure users who will chat with the bot and their character prompts:</label>
+                <div id="listen-list">
+                    {% for item in config.LISTEN_LIST %}
+                    <div class="entry">
+                        <input type="text" name="nickname" value="{{ item[0] }}" placeholder="WeChat nickname/remark" required>
+                        <select name="prompt_file" required>
+                            <option value="">-- Select Prompt File --</option>
+                            {% for file in prompt_files %}
+                            <option value="{{ file }}" {% if item[1] == file %}selected{% endif %}>{{ file }}</option>
+                            {% endfor %}
+                        </select>
+                        <button type="button" onclick="removeEntry(this)">Remove</button>
+                    </div>
+                    {% endfor %}
+                </div>
+                <button type="button" onclick="addEntry()" class="add-user-btn">Add User</button>
+                <small>
+                    <strong>Tips:</strong><br>
+                    • "WeChat nickname/remark" must exactly match the one in WeChat<br>
+                    • Prompt files define the AI's character and personality traits<br>
+                    • You can create and edit custom characters in "Prompt Management" on the full settings page
+                </small>
+            </div>
+
+            <h2>3. Feature Toggles</h2>
+            <div id="online_search_switch_group">
+                <div class="form-group">
+                    <div class="switch-item">
+                        <label for="enable_online_api_switch"><b>Web Search</b></label>
+                        <div class="switch">
+                            <label>
+                                <input type="checkbox" id="enable_online_api_switch" name="ENABLE_ONLINE_API" {% if config.ENABLE_ONLINE_API %}checked{% endif %}>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <small>Allow the bot to search the web for information to answer questions (e.g. weather, news).</small>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="switch-item">
+                    <label for="enable_auto_message_switch"><b>Proactive Messages</b></label>
+                    <div class="switch">
+                        <label>
+                            <input type="checkbox" id="enable_auto_message_switch" name="ENABLE_AUTO_MESSAGE" {% if config.ENABLE_AUTO_MESSAGE %}checked{% endif %}>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+                <small>Allow the bot to proactively send messages based on configured time intervals.</small>
+            </div>
+
+            <div class="button-group">
+                <button type="submit">Save & Go to Full Settings</button>
+                <a href="{{ url_for('index', skipped='true') }}" class="button-like skip">Skip Quick Setup</a>
+            </div>
+        </form>
+    </div>
+
+    <div class="legal-notice">
+        <div class=”legal-toggle” id=”toggleLegal”>Show Legal Notice</div>
+        <div class=”legal-content” id=”legalContent”>
+            <p>
+                Modified based on the <strong>KouriChat</strong> project.<br>
+                Original project copyright: Copyright (C) 2025, umaru<br>
+                Modified version copyright: Copyright (C) 2025, iwyxdxl
+            </p>
+            <p>
+                This software is free software. You can redistribute and/or modify it under the terms of the
+                <a href=”https://www.gnu.org/licenses/gpl-3.0.en.html” target=”_blank”>
+                GNU General Public License version 3 (or later)</a>.
+            </p>
+            <p>
+                This software is provided “as is”, without any express or implied warranty (including merchantability or fitness for a particular purpose).<br>
+                If you have not received a copy of the license, please visit <a href=”https://www.gnu.org/licenses/gpl-3.0.en.html” target=”_blank”>
+                GNU GPL 3.0</a>.
+            </p>
+            <p>
+                Source code:<br>
+                Original project: <a href=”https://github.com/KouriChat/KouriChat” target=”_blank”>https://github.com/KouriChat/KouriChat</a><br>
+                This project: <a href=”https://github.com/iwyxdxl/WeChatBot_WXAUTO_SE” target=”_blank”>https://github.com/iwyxdxl/WeChatBot_WXAUTO_SE</a>
+            </p>
+            <p>
+                This software is for educational and entertainment purposes only. Do not use it for illegal purposes. The authors bear no legal responsibility for any misuse.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Setup API Key input field interaction logic
+        function setupApiKeyInputs() {
+            const apiKeyInputs = document.querySelectorAll('.api-key-input');
+            
+            apiKeyInputs.forEach(input => {
+                const isHidden = input.value && input.value.includes('*');
+                
+                if (isHidden) {
+                    // Add special styling for hidden API Key
+                    input.style.backgroundColor = '#fff3e0';
+                    input.style.border = '2px solid #ff9800';
+                    
+                    // Add focus event
+                    input.addEventListener('focus', function() {
+                        if (this.value && this.value.includes('*')) {
+                            this.placeholder = 'Enter a new API Key to replace the hidden one';
+                            this.style.backgroundColor = '#e8f5e9';
+                            this.style.border = '2px solid #4caf50';
+                        }
+                    });
+                    
+                    input.addEventListener('blur', function() {
+                        if (this.value && this.value.includes('*')) {
+                            this.style.backgroundColor = '#fff3e0';
+                            this.style.border = '2px solid #ff9800';
+                            this.placeholder = 'Enter API Key';
+                        }
+                    });
+                    
+                    // Add input event, clear hidden styling
+                    input.addEventListener('input', function() {
+                        if (this.value && !this.value.includes('*')) {
+                            this.style.backgroundColor = '';
+                            this.style.border = '';
+                            this.placeholder = 'Enter API Key';
+                        }
+                    });
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize API Key input fields
+            setupApiKeyInputs();
+            
+            const apiProviderSelect = document.getElementById('quick_start_api_provider');
+            const customBaseUrlGroup = document.getElementById('custom_base_url_group');
+            const customBaseUrlInput = document.getElementById('quick_start_custom_base_url');
+            const apiKeyNote = document.getElementById('api_key_note');
+            const nonWeapisNote = document.getElementById('non_weapis_note');
+            const onlineSearchSwitchGroup = document.getElementById('online_search_switch_group');
+            const onlineApiSwitch = document.getElementById('enable_online_api_switch');
+            const weapisRegisterLink = document.getElementById('weapis_register_link');
+            const apiKeyInput = document.getElementById('quick_start_api_key');
+
+            function updateProviderUI() {
+                const selectedProvider = apiProviderSelect.value;
+
+                if (selectedProvider === 'other') {
+                    customBaseUrlGroup.style.display = 'block';
+                    customBaseUrlInput.required = true;
+                } else {
+                    customBaseUrlGroup.style.display = 'none';
+                    customBaseUrlInput.required = false;
+                }
+
+                if (selectedProvider === 'weapis') {
+                    apiKeyNote.textContent = 'After obtaining a WeAPIs key, chat, image recognition, and web search features will use this key with recommended settings.';
+                    apiKeyNote.style.color = '#666';
+                    nonWeapisNote.style.display = 'none';
+                    onlineSearchSwitchGroup.style.display = 'block';
+                    if(onlineApiSwitch) onlineApiSwitch.disabled = false;
+                    weapisRegisterLink.style.display = 'block';
+                    apiKeyInput.placeholder = "Enter the API Key obtained from WeAPIs";
+                } else {
+                    apiKeyNote.textContent = 'Please enter the API Key from your selected provider.';
+                    apiKeyNote.style.color = '#555';
+                    nonWeapisNote.style.display = 'block';
+                    onlineSearchSwitchGroup.style.display = 'none'; 
+                    if(onlineApiSwitch) {
+                        onlineApiSwitch.checked = false;
+                        onlineApiSwitch.disabled = true; 
+                    }
+                    weapisRegisterLink.style.display = 'none';
+                    apiKeyInput.placeholder = "Enter API Key";
+                }
+            }
+
+            updateProviderUI(); 
+            apiProviderSelect.addEventListener('change', updateProviderUI);
+        });
+
+        function addEntry() {
+            const container = document.getElementById('listen-list');
+            const div = document.createElement('div');
+            div.className = 'entry';
+            div.innerHTML = `
+                <input type="text" name="nickname" placeholder="WeChat nickname/remark" required>
+                <select name="prompt_file" required>
+                    <option value="">-- Select Prompt File --</option>
+                    {% for file in prompt_files %}
+                    <option value="{{ file }}">{{ file }}</option>
+                    {% endfor %}
+                </select>
+                <button type="button" onclick="removeEntry(this)">Remove</button>
+            `;
+            container.appendChild(div);
+        }
+
+        function removeEntry(button) {
+            button.parentElement.remove();
+        }
+
+        document.getElementById('toggleLegal').addEventListener('click', function() {
+            var content = document.getElementById('legalContent');
+            if (content.style.display === 'none' || content.style.display === '') {
+                content.style.display = 'block';
+                this.textContent = 'Hide Legal Notice';
+            } else {
+                content.style.display = 'none';
+                this.textContent = 'Show Legal Notice';
+            }
+        });
+    </script>
+</body>
+</html>
