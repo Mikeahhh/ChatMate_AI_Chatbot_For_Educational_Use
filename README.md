@@ -33,6 +33,11 @@ ChatMate is an AI-powered WeChat chatbot (v3.28) that integrates with large lang
 ## Demo Video
 📹 **A demo video has been included in this repository:** `demo_video.mp4`
 
+
+https://github.com/user-attachments/assets/3a725ed4-bbf1-4756-b764-cc8ace9063fe
+
+
+
 Watch the demo video to see the bot in action, including:
 - Multi-user conversation handling
 - Emoji response generation based on emotion detection
