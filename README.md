@@ -1,5 +1,4 @@
-# COMP S351F Software Project Management - WeChatBox
-
+# COMP S351F Software Project Management - ChatMate - AI Chatbot For Educational Use
 ## Project Overview
 WeChatBox is an AI-powered WeChat chatbot (v3.28) that integrates with large language models to provide intelligent automated conversations. Built with Python and Flask, it supports multi-user/group chat with independent AI personas, advanced memory management, and web UI configuration.
 
