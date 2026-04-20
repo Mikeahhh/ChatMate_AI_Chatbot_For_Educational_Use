@@ -1,7 +1,7 @@
 # COMP S351F Software Project Management - ChatMate - AI Chatbot For Educational Use
 ## Project Overview
 ChatMate is an AI-powered WeChat chatbot (v3.28) that integrates with large language models to provide intelligent automated conversations. Built with Python and Flask, it supports multi-user/group chat with independent AI personas, advanced memory management, and web UI configuration.
-<img width="1024" height="1536" alt="_cgi-bin_mmwebwx-bin_webwxgetmsgimg__ MsgID=8631460246398693010 skey=@crypt_40c08e15_5b4c8b0218899ecafc675faa2a828c28 mmweb_appid=wx_webfilehelper" src="https://github.com/user-attachments/assets/c7f476d0-3f5f-47c7-af08-e2e1b32bd622" />
+<img width="400" height="600" alt="_cgi-bin_mmwebwx-bin_webwxgetmsgimg__ MsgID=8631460246398693010 skey=@crypt_40c08e15_5b4c8b0218899ecafc675faa2a828c28 mmweb_appid=wx_webfilehelper" src="https://github.com/user-attachments/assets/c7f476d0-3f5f-47c7-af08-e2e1b32bd622" />
 
 ### Key Features
 - **Multi-user/group chat support** with independent AI personas (Prompt per user)
